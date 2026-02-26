@@ -1,10 +1,8 @@
 import Poutine from './Poutine.js';
 export default class Chef {
   constructor(element) {
-    this.menu = [];
-    this.count = 0;
     this.container = document.querySelector('.chef__order');
-    this.commander = document.querySelectorAll('.js-commander');
+    this.commander = document.querySelectorAll('.js-commande');
     this.element = element;
     this.init();
   }
@@ -24,17 +22,18 @@ export default class Chef {
   }
 
   sendOrder() {
-    const button = element.querySelectorAll('.js-button');
+    let count = 0;
+    const button = this.element.querySelectorAll('.js-button');
     for (let i = 0; i < button.length; i++) {
       const element = button[i];
-      if (button.classList.contains('is-active')) {
-        this.count = this.count++;
+      if (element.classList.contains('is-active')) {
+        count++;
       }
     }
-    console.log(`commander`);
+    console.log(`commander ${count}`);
     this.container.innerHTML = '';
     const commande = document.createElement('p');
-    commande.textContent = `total de poutines(s): ${this.count}`;
+    commande.textContent = `total de poutines(s): ${count}`;
     commande.appendChild(this.container);
   }
 }

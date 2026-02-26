@@ -11,11 +11,11 @@ export default class Poutine {
     console.log('poutine');
     for (let i = 0; i < this.type.length; i++) {
       const button = this.type[i];
-      button.addEventListener('click', this.selectType);
+      button.addEventListener('click', this.selectType.bind(this));
     }
   }
 
-  selectType() {
+  selectType(event) {
     console.log('poutine choisis');
     for (let i = 0; i < this.type.length; i++) {
       const button = this.type[i];
@@ -24,14 +24,14 @@ export default class Poutine {
         button.classList.remove('is-active');
       }
     }
-    this.classList.add('is-active');
-    this.selectType = this.textContent;
+    event.currentTarget.classList.add('is-active');
+    this.selectedType = event.currentTarget.textContent;
     this.updatePhoto();
   }
 
   updatePhoto() {
-    image = element.querySelector('.js-image');
+    const image = this.element.querySelector('.js-image');
     image.classList.add('is-active');
-    image.src = `assets/images/${this.selectType}.png`;
+    image.src = `assets/images/${this.selectedType}.png`;
   }
 }
